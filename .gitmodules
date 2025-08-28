@@ -1,3 +1,9 @@
 [submodule "lib/forge-std"]
 	path = lib/forge-std
 	url = https://github.com/foundry-rs/forge-std
+[submodule "lib/morpho-vault-v2"]
+	path = lib/morpho-vault-v2
+	url = https://github.com/morpho-org/vault-v2
+[submodule "lib/metamorpho-v1.1"]
+	path = lib/metamorpho-v1.1
+	url = https://github.com/morpho-org/metamorpho-v1.1
