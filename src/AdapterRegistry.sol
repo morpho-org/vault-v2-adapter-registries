@@ -1,14 +1,14 @@
 // SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.13;
 
-import "./interfaces/IRegistry.sol";
+import "./interfaces/IAdapterRegistry.sol";
 import "../lib/morpho-vault-v2/src/adapters/interfaces/IMorphoMarketV1Adapter.sol";
 import "../lib/morpho-vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterFactory.sol";
 import "../lib/morpho-vault-v2/src/adapters/interfaces/IMorphoVaultV1Adapter.sol";
 import "../lib/morpho-vault-v2/src/adapters/interfaces/IMorphoVaultV1AdapterFactory.sol";
 import "../lib/metamorpho-v1.1/src/interfaces/IMetaMorphoV1_1Factory.sol";
 
-contract Registry is IRegistry {
+contract AdapterRegistry is IAdapterRegistry {
     address public MORPHO;
     address vaultV1Factory;
     address vaultV11Factory;
@@ -29,7 +29,7 @@ contract Registry is IRegistry {
         morphoVaultV1AdapterFactory = _morphoVaultV1AdapterFactory;
     }
 
-    function canAddAdapter(address adapter) public view returns (bool) {
+    function isInRegistry(address adapter) public view returns (bool) {
         if (IMorphoMarketV1AdapterFactory(morphoMarketV1AdapterFactory).isMorphoMarketV1Adapter(adapter)) {
             return IMorphoMarketV1Adapter(adapter).morpho() == MORPHO;
         } else if (IMorphoVaultV1AdapterFactory(morphoVaultV1AdapterFactory).isMorphoVaultV1Adapter(adapter)) {
