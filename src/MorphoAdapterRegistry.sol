@@ -8,9 +8,15 @@ contract MorphoAdapterRegistry is IAdapterRegistry {
     address public owner;
     address[] public registryModules;
 
+    uint transient public startIndex;
+
     event Constructor(address indexed owner);
     event SetOwner(address indexed newOwner);
     event AddRegistryModule(address indexed registryModule);
+
+    function setStartIndex(uint newStartIndex) external {
+        startIndex = newStartIndex;
+    }
 
     function registryModulesLength() external view returns (uint256) {
         return registryModules.length;
@@ -34,7 +40,7 @@ contract MorphoAdapterRegistry is IAdapterRegistry {
     }
 
     function isInRegistry(address adapter) public view returns (bool) {
-        for (uint256 i = 0; i < registryModules.length; i++) {
+        for (uint256 i = startIndex; i < registryModules.length; i++) {
             if (IAdapterRegistry(registryModules[i]).isInRegistry(adapter)) return true;
         }
         return false;
