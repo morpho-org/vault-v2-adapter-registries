@@ -4,6 +4,6 @@ pragma solidity 0.8.28;
 
 import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
-interface IMorphoVaultV2Module is IAdapterRegistry {
+interface IMorphoVaultV2Registry is IAdapterRegistry {
     function expectedRegistry() external view returns (address);
 }

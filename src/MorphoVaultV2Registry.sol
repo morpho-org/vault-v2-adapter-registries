@@ -5,7 +5,7 @@ pragma solidity 0.8.28;
 import "../../lib/vault-v2/src/interfaces/IVaultV2.sol";
 import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
-contract MorphoVaultV2Module is IAdapterRegistry {
+contract MorphoVaultV2Registry is IAdapterRegistry {
     address public immutable morphoRegistry;
 
     constructor(address _morphoRegistry) {

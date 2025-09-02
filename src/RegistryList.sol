@@ -7,16 +7,16 @@ import "./interfaces/IRegistryList.sol";
 contract RegistryList is IRegistryList {
     address public owner;
 
-    /// @dev Owner controlled append-only list of subRegistries.
+    /// @dev Owner controlled append-only list of registries.
     address[] public subRegistries;
-
-    function subRegistriesLength() external view returns (uint256) {
-        return subRegistries.length;
-    }
 
     event Constructor(address indexed owner);
     event SetOwner(address indexed newOwner);
     event AddSubRegistry(address indexed subRegistry);
+
+    function subRegistriesLength() external view returns (uint256) {
+        return subRegistries.length;
+    }
 
     constructor() {
         owner = msg.sender;
@@ -37,7 +37,7 @@ contract RegistryList is IRegistryList {
 
     function isInRegistry(address adapter) public view returns (bool) {
         for (uint256 i = 0; i < subRegistries.length; i++) {
-            if (IRegistryList(subRegistries[i]).isInRegistry(adapter)) return true;
+            if (IAdapterRegistry(subRegistries[i]).isInRegistry(adapter)) return true;
         }
         return false;
     }

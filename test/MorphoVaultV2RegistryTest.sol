@@ -3,14 +3,14 @@
 pragma solidity 0.8.28;
 
 import "forge-std/Test.sol";
-import "../src/modules/MorphoVaultV2Module.sol";
+import "../src/MorphoVaultV2Registry.sol";
 
-contract MorphoVaultV2ModuleTest is Test {
-    MorphoVaultV2Module module;
+contract MorphoVaultV2RegistryTest is Test {
+    MorphoVaultV2Registry module;
     address expectedRegistry = address(0x1234);
 
     function setUp() public {
-        module = new MorphoVaultV2Module(expectedRegistry);
+        module = new MorphoVaultV2Registry(expectedRegistry);
     }
 
     function testConstructor() public view {

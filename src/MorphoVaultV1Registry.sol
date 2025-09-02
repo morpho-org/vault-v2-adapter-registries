@@ -7,7 +7,7 @@ import "../../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1AdapterFactory.
 import "../../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1Adapter.sol";
 import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
-contract MorphoVaultV1Module is IAdapterRegistry {
+contract MorphoVaultV1Registry is IAdapterRegistry {
     address public immutable morphoVaultV1AdapterFactory;
     address public immutable metaMorphoFactory;
 
