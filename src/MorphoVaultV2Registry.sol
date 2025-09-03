@@ -14,6 +14,7 @@ contract MorphoVaultV2Registry is IAdapterRegistry {
 
     function isInRegistry(address vault) external view returns (bool) {
         bytes4 selector = bytes4(keccak256("setAdapterRegistry(address)"));
-        return IVaultV2(vault).adapterRegistry() == morphoRegistry && IVaultV2(vault).timelock(selector) == type(uint256).max;
+        return IVaultV2(vault).adapterRegistry() == morphoRegistry
+            && IVaultV2(vault).timelock(selector) == type(uint256).max;
     }
 }
