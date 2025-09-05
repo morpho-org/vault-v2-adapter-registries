@@ -81,18 +81,16 @@ contract RegistryListTest is Test {
     function testAddingRevertingSubRegistry(address adapter, address legitSubRegistry, address revertingSubRegistry)
         public
     {
+        assumeAddressIsNot(legitSubRegistry, AddressType.ForgeAddress);
         vm.assume(legitSubRegistry != revertingSubRegistry);
+        vm.assume(legitSubRegistry != address(0));
 
         registry.addSubRegistry(legitSubRegistry);
         registry.addSubRegistry(revertingSubRegistry);
-
-        // vm.mockCall(legitSubRegistry, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(false));
-
-        // vm.expectRevert();
-        // registry.isInRegistry(adapter);
 
         vm.mockCall(legitSubRegistry, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(true));
 
         assertTrue(registry.isInRegistry(adapter));
     }
+
 }
