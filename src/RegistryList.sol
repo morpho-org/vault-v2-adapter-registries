@@ -29,6 +29,7 @@ contract RegistryList is IRegistryList {
         emit SetOwner(newOwner);
     }
 
+    /// @dev Because of gas constraints, if the subRegistries list is too long, vaults will not be able to validate their adapters that are in those registries.
     function addSubRegistry(address subRegistry) external {
         require(msg.sender == owner, "Not owner");
         subRegistries.push(subRegistry);
