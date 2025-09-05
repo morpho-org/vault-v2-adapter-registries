@@ -29,6 +29,7 @@ contract RegistryList is IRegistryList {
         emit SetOwner(newOwner);
     }
 
+    /// @dev If the loop is too gas consuming, vaults will not be able to validate adapters that would be validated by registries that are too "far" in the list.
     function addSubRegistry(address subRegistry) external {
         require(msg.sender == owner, "Not owner");
         subRegistries.push(subRegistry);
