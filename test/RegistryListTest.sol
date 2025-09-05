@@ -92,5 +92,4 @@ contract RegistryListTest is Test {
 
         assertTrue(registry.isInRegistry(adapter));
     }
-
 }
