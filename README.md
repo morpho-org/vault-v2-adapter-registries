@@ -2,7 +2,7 @@
 
 Collection of adapter registries for [vault-v2](https://github.com/morpho-org/vault-v2).
 
-## Developpers
+## Developers
 
 Compiling, testing and formatting done with [forge](https://book.getfoundry.sh/).
 
