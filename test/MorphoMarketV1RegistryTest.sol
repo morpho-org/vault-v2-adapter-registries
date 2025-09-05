@@ -7,23 +7,42 @@ import "../src/MorphoMarketV1Registry.sol";
 
 contract MorphoMarketV1RegistryTest is Test {
     MorphoMarketV1Registry registry;
-    address adapterFactory = address(0x1001);
+    address morphoMarketV1AdapterFactory = address(0x1001);
     address expectedMorpho = address(0x1234);
 
     function setUp() public {
-        registry = new MorphoMarketV1Registry(adapterFactory, expectedMorpho);
+        registry = new MorphoMarketV1Registry(morphoMarketV1AdapterFactory, expectedMorpho);
     }
 
-    function testIsInRegistry(address adapter, address adapterMorpho, bool inFactory) public {
+    function testIsInRegistry(address adapter, address morpho, bool inFactory) public {
         vm.mockCall(
-            adapterFactory, abi.encodeWithSignature("isMorphoMarketV1Adapter(address)", adapter), abi.encode(inFactory)
+            morphoMarketV1AdapterFactory,
+            abi.encodeWithSignature("isMorphoMarketV1Adapter(address)", adapter),
+            abi.encode(inFactory)
         );
 
         if (inFactory) {
-            vm.mockCall(adapter, abi.encodeWithSignature("morpho()"), abi.encode(adapterMorpho));
+            vm.mockCall(adapter, abi.encodeWithSignature("morpho()"), abi.encode(morpho));
         }
 
-        bool expected = inFactory && adapterMorpho == expectedMorpho;
+        bool expected = inFactory && morpho == expectedMorpho;
         assertEq(registry.isInRegistry(adapter), expected);
+    }
+
+    /// forge-config: default.allow_internal_expect_revert = true
+    function testCallWrongAdapter(address adapter) public {
+        vm.expectRevert();
+        IMorphoMarketV1Adapter(adapter).morpho();
+    }
+
+    // check that if the adapter isn't a market adapter, it doens't revert (basically checks the order of execution of solidity).
+    function testNoObscureRevert(address adapter) public {
+        vm.mockCall(
+            morphoMarketV1AdapterFactory,
+            abi.encodeWithSignature("isMorphoMarketV1Adapter(address)", adapter),
+            abi.encode(false)
+        );
+
+        registry.isInRegistry(adapter);
     }
 }
