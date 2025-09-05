@@ -38,7 +38,7 @@ contract RegistryListTest is Test {
         registry.setOwner(address(0x123));
     }
 
-    function testAddRegistryModule(address subRegistry) public {
+    function testAddSubRegistry(address subRegistry) public {
         vm.expectEmit(true, false, false, false);
         emit RegistryList.AddSubRegistry(subRegistry);
 
