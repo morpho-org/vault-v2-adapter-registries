@@ -6,34 +6,36 @@ import "forge-std/Test.sol";
 import "../src/MorphoVaultV1Registry.sol";
 
 contract MorphoVaultV1RegistryTest is Test {
-    MorphoVaultV1Registry module;
-    address metaMorphoFactory = address(0x1001);
-    address adapterFactory = address(0x1002);
+    MorphoVaultV1Registry registry;
+    address morphoVaultV1Factory = address(0x1001);
+    address morphoVaultV1AdapterFactory = address(0x1002);
 
     function setUp() public {
-        module = new MorphoVaultV1Registry(adapterFactory, metaMorphoFactory);
+        registry = new MorphoVaultV1Registry(morphoVaultV1AdapterFactory, morphoVaultV1Factory);
     }
 
     function testConstructor() public view {
-        assertEq(module.morphoVaultV1AdapterFactory(), adapterFactory);
-        assertEq(module.metaMorphoFactory(), metaMorphoFactory);
+        assertEq(registry.morphoVaultV1AdapterFactory(), morphoVaultV1AdapterFactory);
+        assertEq(registry.morphoVaultV1Factory(), morphoVaultV1Factory);
     }
 
     function testIsInRegistry(address adapter, address adapterVault, bool inFactory, bool vaultInMetaMorpho) public {
         vm.mockCall(
-            adapterFactory, abi.encodeWithSignature("isMorphoVaultV1Adapter(address)", adapter), abi.encode(inFactory)
+            morphoVaultV1AdapterFactory,
+            abi.encodeWithSignature("isMorphoVaultV1Adapter(address)", adapter),
+            abi.encode(inFactory)
         );
 
         if (inFactory) {
             vm.mockCall(adapter, abi.encodeWithSignature("morphoVaultV1()"), abi.encode(adapterVault));
             vm.mockCall(
-                metaMorphoFactory,
+                morphoVaultV1Factory,
                 abi.encodeWithSignature("isMetaMorpho(address)", adapterVault),
                 abi.encode(vaultInMetaMorpho)
             );
         }
 
         bool expected = inFactory && vaultInMetaMorpho;
-        assertEq(module.isInRegistry(adapter), expected);
+        assertEq(registry.isInRegistry(adapter), expected);
     }
 }
