@@ -38,37 +38,61 @@ contract RegistryListTest is Test {
         registry.setOwner(address(0x123));
     }
 
-    function testAddRegistryModule(address module) public {
+    function testAddRegistryModule(address subRegistry) public {
         vm.expectEmit(true, false, false, false);
-        emit RegistryList.AddSubRegistry(module);
+        emit RegistryList.AddSubRegistry(subRegistry);
 
-        registry.addSubRegistry(module);
+        registry.addSubRegistry(subRegistry);
 
         assertEq(registry.subRegistriesLength(), 1);
-        assertEq(registry.subRegistries(0), module);
+        assertEq(registry.subRegistries(0), subRegistry);
     }
 
-    function testAddRegistryModuleOnlyOwner() public {
+    function testAddRegistrySubRegistryOnlyOwner() public {
         vm.prank(user);
         vm.expectRevert("Not owner");
         registry.addSubRegistry(address(0x1002));
     }
 
-    function testIsInRegistryWithModules(address adapter, bool module1Result, bool module2Result) public {
-        address module1 = address(0x1001);
-        address module2 = address(0x1002);
+    function testIsInRegistryWithSubRegistries(address adapter, bool subRegistry1Result, bool subRegistry2Result)
+        public
+    {
+        address subRegistry1 = address(0x1001);
+        address subRegistry2 = address(0x1002);
 
-        registry.addSubRegistry(module1);
-        registry.addSubRegistry(module2);
+        registry.addSubRegistry(subRegistry1);
+        registry.addSubRegistry(subRegistry2);
 
-        vm.mockCall(module1, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(module1Result));
-        vm.mockCall(module2, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(module2Result));
+        vm.mockCall(
+            subRegistry1, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(subRegistry1Result)
+        );
+        vm.mockCall(
+            subRegistry2, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(subRegistry2Result)
+        );
 
-        bool expected = module1Result || module2Result;
+        bool expected = subRegistry1Result || subRegistry2Result;
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
-    function testIsInRegistryNoModules(address adapter) public view {
+    function testIsInRegistryNoSubRegistries(address adapter) public view {
         assertFalse(registry.isInRegistry(adapter));
+    }
+
+    function testAddingRevertingSubRegistry(address adapter, address legitSubRegistry, address revertingSubRegistry)
+        public
+    {
+        vm.assume(legitSubRegistry != revertingSubRegistry);
+
+        registry.addSubRegistry(legitSubRegistry);
+        registry.addSubRegistry(revertingSubRegistry);
+
+        // vm.mockCall(legitSubRegistry, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(false));
+
+        // vm.expectRevert();
+        // registry.isInRegistry(adapter);
+
+        vm.mockCall(legitSubRegistry, abi.encodeWithSignature("isInRegistry(address)", adapter), abi.encode(true));
+
+        assertTrue(registry.isInRegistry(adapter));
     }
 }

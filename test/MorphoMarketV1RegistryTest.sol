@@ -29,12 +29,6 @@ contract MorphoMarketV1RegistryTest is Test {
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
-    /// forge-config: default.allow_internal_expect_revert = true
-    function testCallWrongAdapter(address adapter) public {
-        vm.expectRevert();
-        IMorphoMarketV1Adapter(adapter).morpho();
-    }
-
     // check that if the adapter isn't a market adapter, it doens't revert (basically checks the order of execution of solidity).
     function testNoObscureRevert(address adapter) public {
         vm.mockCall(

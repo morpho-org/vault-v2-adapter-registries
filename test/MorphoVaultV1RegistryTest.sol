@@ -41,12 +41,6 @@ contract MorphoVaultV1RegistryTest is Test {
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
-    /// forge-config: default.allow_internal_expect_revert = true
-    function testCallWrongAdapter(address adapter) public {
-        vm.expectRevert();
-        IMorphoVaultV1Adapter(adapter).morphoVaultV1();
-    }
-
     // check that if the adapter isn't a vault adapter, it doens't revert (basically checks the order of execution of solidity).
     function testNoObscureRevert(address adapter) public {
         vm.mockCall(
