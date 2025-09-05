@@ -8,24 +8,29 @@ import "../src/MorphoMarketV1Registry.sol";
 contract MorphoMarketV1RegistryTest is Test {
     MorphoMarketV1Registry registry;
     address morphoMarketV1AdapterFactory = address(0x1001);
-    address expectedMorpho = address(0x1234);
+    address expectedMorphoMarketV1 = address(0x1234);
 
     function setUp() public {
-        registry = new MorphoMarketV1Registry(morphoMarketV1AdapterFactory, expectedMorpho);
+        registry = new MorphoMarketV1Registry(morphoMarketV1AdapterFactory, expectedMorphoMarketV1);
     }
 
-    function testIsInRegistry(address adapter, address morpho, bool inFactory) public {
+    function testConstructor() public view {
+        assertEq(registry.morphoMarketV1AdapterFactory(), morphoMarketV1AdapterFactory);
+        assertEq(registry.morphoMarketV1(), expectedMorphoMarketV1);
+    }
+
+    function testIsInRegistry(address adapter, address morphoMarketV1, bool isMorphoMarketV1Adapter) public {
         vm.mockCall(
             morphoMarketV1AdapterFactory,
             abi.encodeWithSignature("isMorphoMarketV1Adapter(address)", adapter),
-            abi.encode(inFactory)
+            abi.encode(isMorphoMarketV1Adapter)
         );
 
-        if (inFactory) {
-            vm.mockCall(adapter, abi.encodeWithSignature("morpho()"), abi.encode(morpho));
+        if (isMorphoMarketV1Adapter) {
+            vm.mockCall(adapter, abi.encodeWithSignature("morpho()"), abi.encode(morphoMarketV1));
         }
 
-        bool expected = inFactory && morpho == expectedMorpho;
+        bool expected = isMorphoMarketV1Adapter && morphoMarketV1 == expectedMorphoMarketV1;
         assertEq(registry.isInRegistry(adapter), expected);
     }
 

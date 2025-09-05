@@ -6,5 +6,5 @@ import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 interface IMorphoMarketV1Registry is IAdapterRegistry {
     function morphoMarketV1AdapterFactory() external view returns (address);
-    function morpho() external view returns (address);
+    function morphoMarketV1() external view returns (address);
 }
