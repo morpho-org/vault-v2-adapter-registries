@@ -1,6 +1,11 @@
 [profile.default]
-src = "src"
-out = "out"
-libs = ["lib"]
+via_ir = true
+optimizer = true
+optimizer_runs = 999999
+bytecode_hash = "none"
+evm_version = "cancun"
+
+[profile.default.fmt]
+wrap_comments = true
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
