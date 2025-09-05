@@ -2,12 +2,12 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity 0.8.28;
 
-import "../../lib/metamorpho/src/interfaces/IMetaMorphoFactory.sol";
-import "../../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1AdapterFactory.sol";
-import "../../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1Adapter.sol";
-import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
+import "../lib/metamorpho/src/interfaces/IMetaMorphoFactory.sol";
+import "../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1AdapterFactory.sol";
+import "../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1Adapter.sol";
+import "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
-contract MorphoVaultV1Module is IAdapterRegistry {
+contract MorphoVaultV1Registry is IAdapterRegistry {
     address public immutable morphoVaultV1AdapterFactory;
     address public immutable metaMorphoFactory;
 

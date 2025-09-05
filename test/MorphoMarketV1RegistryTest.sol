@@ -3,15 +3,15 @@
 pragma solidity 0.8.28;
 
 import "forge-std/Test.sol";
-import "../src/modules/MorphoMarketV1Module.sol";
+import "../src/MorphoMarketV1Registry.sol";
 
-contract MorphoMarketV1ModuleTest is Test {
-    MorphoMarketV1Module module;
+contract MorphoMarketV1RegistryTest is Test {
+    MorphoMarketV1Registry registry;
     address adapterFactory = address(0x1001);
     address expectedMorpho = address(0x1234);
 
     function setUp() public {
-        module = new MorphoMarketV1Module(adapterFactory, expectedMorpho);
+        registry = new MorphoMarketV1Registry(adapterFactory, expectedMorpho);
     }
 
     function testIsInRegistry(address adapter, address adapterMorpho, bool inFactory) public {
@@ -24,6 +24,6 @@ contract MorphoMarketV1ModuleTest is Test {
         }
 
         bool expected = inFactory && adapterMorpho == expectedMorpho;
-        assertEq(module.isInRegistry(adapter), expected);
+        assertEq(registry.isInRegistry(adapter), expected);
     }
 }
