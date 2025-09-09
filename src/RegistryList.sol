@@ -8,6 +8,7 @@ contract RegistryList is IRegistryList {
     address public owner;
 
     /// @dev Owner controlled append-only list of registries.
+    /// @dev This registry is effectively "add-only" only if all sub-registries are also "add-only".
     address[] public subRegistries;
 
     event Constructor(address indexed owner);
