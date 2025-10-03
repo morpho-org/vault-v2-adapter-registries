@@ -6,6 +6,10 @@ Collection of adapter registries for [vault-v2](https://github.com/morpho-org/va
 
 Compiling, testing and formatting done with [forge](https://book.getfoundry.sh/).
 
+## Audits
+
+Audits can be found in the [audits](./audits/)' folder.
+
 ## License
 
 Files in this repository are publicly available under license `GPL-2.0-or-later`, see [`LICENSE`](./LICENSE).
