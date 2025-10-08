@@ -2,7 +2,7 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity ^0.8.0;
 
-import "forge-std/Test.sol";
+import "../lib/forge-std/src/Test.sol";
 import "../src/MorphoMarketV1Registry.sol";
 
 contract MorphoMarketV1RegistryTest is Test {
@@ -20,6 +20,7 @@ contract MorphoMarketV1RegistryTest is Test {
     }
 
     function testIsInRegistry(address adapter, address morphoMarketV1, bool isMorphoMarketV1Adapter) public {
+        vm.assume(adapter != address(vm));
         vm.mockCall(
             morphoMarketV1AdapterFactory,
             abi.encodeWithSignature("isMorphoMarketV1Adapter(address)", adapter),
