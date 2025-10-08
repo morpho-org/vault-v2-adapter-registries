@@ -35,7 +35,7 @@ contract MorphoMarketV1RegistryTest is Test {
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
-    // Check that if the adapter isn't a market adapter, it doesn't revert (basically checks the order of execution of
+    // check that if the adapter isn't a market adapter, it doesn't revert (basically checks the order of execution of
     // solidity).
     function testNoObscureRevert(address adapter) public {
         vm.mockCall(
