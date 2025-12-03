@@ -2,7 +2,7 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity ^0.8.0;
 
-import "forge-std/Test.sol";
+import "../lib/forge-std/src/Test.sol";
 import "../src/MorphoVaultV1Registry.sol";
 
 contract MorphoVaultV1RegistryTest is Test {
@@ -22,6 +22,7 @@ contract MorphoVaultV1RegistryTest is Test {
     function testIsInRegistry(address adapter, address morphoVaultV1, bool isMorphoVaultV1Adapter, bool isMetaMorpho)
         public
     {
+        vm.assume(adapter != address(vm));
         vm.mockCall(
             morphoVaultV1AdapterFactory,
             abi.encodeWithSignature("isMorphoVaultV1Adapter(address)", adapter),
@@ -41,7 +42,7 @@ contract MorphoVaultV1RegistryTest is Test {
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
-    // check that if the adapter isn't a vault adapter, it doens't revert (basically checks the order of execution of
+    // check that if the adapter isn't a vault adapter, it doesn't revert (basically checks the order of execution of
     // solidity).
     function testNoObscureRevert(address adapter) public {
         vm.mockCall(
