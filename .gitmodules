@@ -7,3 +7,6 @@
 [submodule "lib/metamorpho"]
 	path = lib/metamorpho
 	url = https://github.com/morpho-org/metamorpho
+[submodule "lib/vault-v2-market-v1-adapter-v1"]
+	path = lib/vault-v2-market-v1-adapter-v1
+	url = https://github.com/morpho-org/vault-v2
