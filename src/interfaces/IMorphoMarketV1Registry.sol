@@ -2,9 +2,8 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity >=0.5.0;
 
-import "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
+import {IAdapterRegistry} from "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 interface IMorphoMarketV1Registry is IAdapterRegistry {
-    function morphoMarketV1AdapterFactory() external view returns (address);
-    function morphoMarketV1() external view returns (address);
+    function morphoMarketV1AdapterV2Factory() external view returns (address);
 }

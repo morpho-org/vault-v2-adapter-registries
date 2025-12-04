@@ -2,8 +2,10 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity 0.8.28;
 
-import "../lib/vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterV2Factory.sol";
-import "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
+import {
+    IMorphoMarketV1AdapterV2Factory
+} from "../lib/vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterV2Factory.sol";
+import {IAdapterRegistry} from "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 contract MorphoMarketV1RegistryV2 is IAdapterRegistry {
     address public immutable morphoMarketV1AdapterV2Factory;

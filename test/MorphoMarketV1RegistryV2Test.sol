@@ -2,8 +2,8 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity ^0.8.0;
 
-import "../lib/forge-std/src/Test.sol";
-import "../src/MorphoMarketV1RegistryV2.sol";
+import {Test} from "../lib/forge-std/src/Test.sol";
+import {MorphoMarketV1RegistryV2} from "../src/MorphoMarketV1RegistryV2.sol";
 
 contract MorphoMarketV1RegistryV2Test is Test {
     MorphoMarketV1RegistryV2 registry;
