@@ -2,7 +2,8 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity 0.8.28;
 
-import "./interfaces/IRegistryList.sol";
+import {IRegistryList} from "./interfaces/IRegistryList.sol";
+import {IAdapterRegistry} from "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 contract RegistryList is IRegistryList {
     address public owner;

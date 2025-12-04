@@ -8,4 +8,9 @@ evm_version = "cancun"
 [profile.default.fmt]
 wrap_comments = true
 
+[lint]
+exclude_lints = [
+    "screaming-snake-case-immutable",
+]
+
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options

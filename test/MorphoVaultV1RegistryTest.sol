@@ -2,16 +2,19 @@
 // Copyright (c) 2025 Morpho Association
 pragma solidity ^0.8.0;
 
-import "../lib/forge-std/src/Test.sol";
-import "../src/MorphoVaultV1Registry.sol";
+import {Test} from "../lib/forge-std/src/Test.sol";
+import {MorphoVaultV1Registry} from "../src/MorphoVaultV1Registry.sol";
+import {IMorphoVaultV1Registry} from "../src/interfaces/IMorphoVaultV1Registry.sol";
 
 contract MorphoVaultV1RegistryTest is Test {
-    MorphoVaultV1Registry registry;
+    IMorphoVaultV1Registry registry;
     address morphoVaultV1Factory = address(0x1001);
     address morphoVaultV1AdapterFactory = address(0x1002);
 
     function setUp() public {
-        registry = new MorphoVaultV1Registry(morphoVaultV1AdapterFactory, morphoVaultV1Factory);
+        registry = IMorphoVaultV1Registry(
+            address(new MorphoVaultV1Registry(morphoVaultV1AdapterFactory, morphoVaultV1Factory))
+        );
     }
 
     function testConstructor() public view {
