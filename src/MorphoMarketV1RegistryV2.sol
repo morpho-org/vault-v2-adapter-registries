@@ -5,9 +5,9 @@ pragma solidity 0.8.28;
 import {
     IMorphoMarketV1AdapterV2Factory
 } from "../lib/vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterV2Factory.sol";
-import {IAdapterRegistry} from "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
+import {IMorphoMarketV1RegistryV2} from "./interfaces/IMorphoMarketV1RegistryV2.sol";
 
-contract MorphoMarketV1RegistryV2 is IAdapterRegistry {
+contract MorphoMarketV1RegistryV2 is IMorphoMarketV1RegistryV2 {
     address public immutable morphoMarketV1AdapterV2Factory;
 
     constructor(address _morphoMarketV1AdapterV2Factory) {

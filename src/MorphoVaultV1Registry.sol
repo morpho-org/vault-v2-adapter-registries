@@ -5,9 +5,9 @@ pragma solidity 0.8.28;
 import {IMetaMorphoFactory} from "../lib/metamorpho/src/interfaces/IMetaMorphoFactory.sol";
 import {IMorphoVaultV1AdapterFactory} from "../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1AdapterFactory.sol";
 import {IMorphoVaultV1Adapter} from "../lib/vault-v2/src/adapters/interfaces/IMorphoVaultV1Adapter.sol";
-import {IAdapterRegistry} from "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
+import {IMorphoVaultV1Registry} from "./interfaces/IMorphoVaultV1Registry.sol";
 
-contract MorphoVaultV1Registry is IAdapterRegistry {
+contract MorphoVaultV1Registry is IMorphoVaultV1Registry {
     address public immutable morphoVaultV1AdapterFactory;
     address public immutable morphoVaultV1Factory;
 
