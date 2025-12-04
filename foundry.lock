@@ -1,0 +1,11 @@
+{
+  "lib/forge-std": {
+    "rev": "8bbcf6e3f8f62f419e5429a0bd89331c85c37824"
+  },
+  "lib/metamorpho": {
+    "rev": "f5faa9c21b1396c291b471a6a5ad9407d23486a9"
+  },
+  "lib/vault-v2": {
+    "rev": "275c2f9cbe6d79e8e4712497dc3cb51cc70f786f"
+  }
+}
