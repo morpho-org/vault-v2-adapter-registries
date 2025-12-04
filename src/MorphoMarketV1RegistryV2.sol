@@ -3,7 +3,6 @@
 pragma solidity 0.8.28;
 
 import "../lib/vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterV2Factory.sol";
-import "../lib/vault-v2/src/adapters/interfaces/IMorphoMarketV1AdapterV2.sol";
 import "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 contract MorphoMarketV1RegistryV2 is IAdapterRegistry {

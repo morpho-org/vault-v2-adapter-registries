@@ -27,16 +27,4 @@ contract MorphoMarketV1RegistryV2Test is Test {
 
         assertEq(registry.isInRegistry(adapter), isMorphoMarketV1AdapterV2);
     }
-
-    // check that if the adapter isn't a market adapter, it doesn't revert (basically checks the order of execution of
-    // solidity).
-    function testNoObscureRevert(address adapter) public {
-        vm.mockCall(
-            morphoMarketV1AdapterV2Factory,
-            abi.encodeWithSignature("isMorphoMarketV1AdapterV2(address)", adapter),
-            abi.encode(false)
-        );
-
-        registry.isInRegistry(adapter);
-    }
 }
