@@ -4,13 +4,14 @@ pragma solidity ^0.8.0;
 
 import {Test} from "../lib/forge-std/src/Test.sol";
 import {MorphoMarketV1RegistryV2} from "../src/MorphoMarketV1RegistryV2.sol";
+import {IMorphoMarketV1RegistryV2} from "../src/interfaces/IMorphoMarketV1RegistryV2.sol";
 
 contract MorphoMarketV1RegistryV2Test is Test {
-    MorphoMarketV1RegistryV2 registry;
+    IMorphoMarketV1RegistryV2 registry;
     address morphoMarketV1AdapterV2Factory = address(0x1001);
 
     function setUp() public {
-        registry = new MorphoMarketV1RegistryV2(morphoMarketV1AdapterV2Factory);
+        registry = IMorphoMarketV1RegistryV2(address(new MorphoMarketV1RegistryV2(morphoMarketV1AdapterV2Factory)));
     }
 
     function testConstructor() public view {

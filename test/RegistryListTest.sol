@@ -4,13 +4,14 @@ pragma solidity ^0.8.0;
 
 import {Test} from "../lib/forge-std/src/Test.sol";
 import {RegistryList} from "../src/RegistryList.sol";
+import {IRegistryList} from "../src/interfaces/IRegistryList.sol";
 
 contract RegistryListTest is Test {
-    RegistryList registry;
+    IRegistryList registry;
     address user = address(0x1);
 
     function setUp() public {
-        registry = new RegistryList();
+        registry = IRegistryList(address(new RegistryList()));
     }
 
     function testConstructor() public view {

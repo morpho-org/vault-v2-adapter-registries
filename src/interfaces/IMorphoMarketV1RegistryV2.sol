@@ -4,6 +4,6 @@ pragma solidity >=0.5.0;
 
 import {IAdapterRegistry} from "../../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
-interface IMorphoMarketV1Registry is IAdapterRegistry {
+interface IMorphoMarketV1RegistryV2 is IAdapterRegistry {
     function morphoMarketV1AdapterV2Factory() external view returns (address);
 }
