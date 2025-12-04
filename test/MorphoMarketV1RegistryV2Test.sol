@@ -8,15 +8,13 @@ import "../src/MorphoMarketV1RegistryV2.sol";
 contract MorphoMarketV1RegistryV2Test is Test {
     MorphoMarketV1RegistryV2 registry;
     address morphoMarketV1AdapterV2Factory = address(0x1001);
-    address expectedMorphoMarketV1 = address(0x1234);
 
     function setUp() public {
-        registry = new MorphoMarketV1RegistryV2(morphoMarketV1AdapterV2Factory, expectedMorphoMarketV1);
+        registry = new MorphoMarketV1RegistryV2(morphoMarketV1AdapterV2Factory);
     }
 
     function testConstructor() public view {
         assertEq(registry.morphoMarketV1AdapterV2Factory(), morphoMarketV1AdapterV2Factory);
-        assertEq(registry.morphoMarketV1(), expectedMorphoMarketV1);
     }
 
     function testIsInRegistry(address adapter, bool isMorphoMarketV1AdapterV2) public {
@@ -27,8 +25,7 @@ contract MorphoMarketV1RegistryV2Test is Test {
             abi.encode(isMorphoMarketV1AdapterV2)
         );
 
-        bool expected = isMorphoMarketV1AdapterV2;
-        assertEq(registry.isInRegistry(adapter), expected);
+        assertEq(registry.isInRegistry(adapter), isMorphoMarketV1AdapterV2);
     }
 
     // check that if the adapter isn't a market adapter, it doesn't revert (basically checks the order of execution of

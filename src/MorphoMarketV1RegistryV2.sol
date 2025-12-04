@@ -8,11 +8,9 @@ import "../lib/vault-v2/src/interfaces/IAdapterRegistry.sol";
 
 contract MorphoMarketV1RegistryV2 is IAdapterRegistry {
     address public immutable morphoMarketV1AdapterV2Factory;
-    address public immutable morphoMarketV1;
 
-    constructor(address _morphoMarketV1AdapterV2Factory, address _morphoMarketV1) {
+    constructor(address _morphoMarketV1AdapterV2Factory) {
         morphoMarketV1AdapterV2Factory = _morphoMarketV1AdapterV2Factory;
-        morphoMarketV1 = _morphoMarketV1;
     }
 
     function isInRegistry(address adapter) external view returns (bool) {
