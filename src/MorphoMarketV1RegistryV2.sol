@@ -16,7 +16,6 @@ contract MorphoMarketV1RegistryV2 is IAdapterRegistry {
     }
 
     function isInRegistry(address adapter) external view returns (bool) {
-        return IMorphoMarketV1AdapterV2Factory(morphoMarketV1AdapterV2Factory).isMorphoMarketV1AdapterV2(adapter)
-            && IMorphoMarketV1AdapterV2(adapter).morpho() == morphoMarketV1;
+        return IMorphoMarketV1AdapterV2Factory(morphoMarketV1AdapterV2Factory).isMorphoMarketV1AdapterV2(adapter);
     }
 }

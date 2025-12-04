@@ -19,7 +19,7 @@ contract MorphoMarketV1RegistryV2Test is Test {
         assertEq(registry.morphoMarketV1(), expectedMorphoMarketV1);
     }
 
-    function testIsInRegistry(address adapter, address morphoMarketV1, bool isMorphoMarketV1AdapterV2) public {
+    function testIsInRegistry(address adapter, bool isMorphoMarketV1AdapterV2) public {
         vm.assume(adapter != address(vm));
         vm.mockCall(
             morphoMarketV1AdapterV2Factory,
@@ -27,11 +27,7 @@ contract MorphoMarketV1RegistryV2Test is Test {
             abi.encode(isMorphoMarketV1AdapterV2)
         );
 
-        if (isMorphoMarketV1AdapterV2) {
-            vm.mockCall(adapter, abi.encodeWithSignature("morpho()"), abi.encode(morphoMarketV1));
-        }
-
-        bool expected = isMorphoMarketV1AdapterV2 && morphoMarketV1 == expectedMorphoMarketV1;
+        bool expected = isMorphoMarketV1AdapterV2;
         assertEq(registry.isInRegistry(adapter), expected);
     }
 
