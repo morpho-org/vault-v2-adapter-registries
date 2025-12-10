@@ -19,8 +19,7 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Run Forge fmt
-        run: |
-          forge fmt --check
+        run: forge fmt --check
   lint:
     runs-on: ubuntu-latest
     steps:
@@ -56,5 +55,4 @@ jobs:
         uses: foundry-rs/foundry-toolchain@v1
 
       - name: Run Forge tests
-        run: |
-          forge test -vvv
+        run: forge test -vvv
