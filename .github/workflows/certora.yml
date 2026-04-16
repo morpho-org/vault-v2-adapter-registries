@@ -19,17 +19,17 @@ jobs:
           - RegistryList
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
         with:
           submodules: recursive
 
-      - uses: actions/setup-java@v4
+      - uses: actions/setup-java@c1e323688fd81a25caa38c78aa6df2d33d3e20d9 # v4
         with:
           distribution: temurin
           java-version: '21'
 
       - name: Install Jq
-        uses: sergeysova/jq-action@v2
+        uses: sergeysova/jq-action@a3f0d4ff59cc1dddf023fc0b325dd75b10deec58 # v2
 
       - name: Run Certora Config Linter
         run: |
@@ -37,7 +37,7 @@ jobs:
           diff <(grep -v "//" "$file" | jq) <(grep -v "//" "$file")
 
       - name: Install python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: ">=3.10"
 
