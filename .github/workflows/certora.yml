@@ -28,9 +28,6 @@ jobs:
           distribution: temurin
           java-version: '21'
 
-      - name: Install Jq
-        uses: sergeysova/jq-action@v2
-
       - name: Run Certora Config Linter
         run: |
           file="certora/confs/${{ matrix.conf }}.conf"
