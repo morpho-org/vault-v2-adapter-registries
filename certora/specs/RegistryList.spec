@@ -28,10 +28,22 @@ rule addSubRegistry(env e, address subRegistry) {
     assert subRegistries(lengthBefore) == subRegistry;
 }
 
-rule subRegistryAppendOnly(uint256 i) {
-    address valueBefore = subRegistries(i);
+// Entries already in the list are never modified nor removed, whatever the call.
+rule subRegistryAppendOnly(uint256 i, method f, env e, calldataarg args) {
     uint256 lengthBefore = subRegistriesLength();
+    require i < lengthBefore;
+    address valueBefore = subRegistries(i);
+    
+    f(e, args);
+    
+    assert subRegistriesLength() >= lengthBefore;
+    assert subRegistries(i) == valueBefore;
+}
 
-    assert i < lengthBefore => subRegistries(i) == valueBefore;
-    assert subRegistriesLength() >= lengthBefore && subRegistriesLength() <= lengthBefore + 1;
+rule subRegistriesLengthIncreasesByAtMostOne(method f, env e, calldataarg args) {
+    uint256 lengthBefore = subRegistriesLength();
+    
+    f(e, args);
+    
+    assert subRegistriesLength() <= lengthBefore + 1;
 }
