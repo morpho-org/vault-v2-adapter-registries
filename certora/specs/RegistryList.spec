@@ -31,6 +31,8 @@ rule addSubRegistry(env e, address subRegistry) {
 // Entries already in the list are never modified nor removed, whatever the call.
 rule subRegistryAppendOnly(uint256 i, method f, env e, calldataarg args) {
     uint256 lengthBefore = subRegistriesLength();
+    // A full list is unreachable on-chain, and `push` would wrap its length back to zero.
+    require lengthBefore < max_uint256;
     require i < lengthBefore;
     address valueBefore = subRegistries(i);
     
