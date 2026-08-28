@@ -11,6 +11,25 @@ wrap_comments = true
 [lint]
 exclude_lints = [
     "screaming-snake-case-immutable",
+    "missing-zero-check",
+    "calls-loop",
+    "pragma-inconsistent",
+]
+
+# Lint profile for test/: the base list in full, plus the rules that only fire in
+# test/. A profile replaces exclude_lints rather than extending it, hence the repeat.
+# pragma-inconsistent is per-invocation, so it has to be in both lists.
+[profile.lint-test.lint]
+exclude_lints = [
+    # Base [lint] list, repeated in full.
+    "screaming-snake-case-immutable",
+    "missing-zero-check",
+    "calls-loop",
+    "pragma-inconsistent",
+    # Additionally firing under test/.
+    "reentrancy-events",
+    "literal-instead-of-constant",
+    "unused-return",
 ]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
