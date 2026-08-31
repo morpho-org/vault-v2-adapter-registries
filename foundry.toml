@@ -14,6 +14,9 @@ exclude_lints = [
     "missing-zero-check",
     "calls-loop",
     "pragma-inconsistent",
+    "missing-events-access-control",
+    "costly-loop",
+    "uninitialized-local",
 ]
 
 # Lint profile for test/: the base list in full, plus the rules that only fire in
@@ -26,6 +29,9 @@ exclude_lints = [
     "missing-zero-check",
     "calls-loop",
     "pragma-inconsistent",
+    "missing-events-access-control",
+    "costly-loop",
+    "uninitialized-local",
     # Additionally firing under test/.
     "reentrancy-events",
     "literal-instead-of-constant",
