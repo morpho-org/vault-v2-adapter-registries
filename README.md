@@ -2,6 +2,8 @@
 
 Collection of adapter registries for [vault-v2](https://github.com/morpho-org/vault-v2).
 
+The registries have moved to [vault-v2](https://github.com/morpho-org/vault-v2), under [`src/periphery/registries`](https://github.com/morpho-org/vault-v2/tree/main/src/periphery/registries).
+
 ## Developers
 
 Compiling, testing and formatting done with [forge](https://book.getfoundry.sh/).
