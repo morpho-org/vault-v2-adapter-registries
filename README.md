@@ -1,5 +1,8 @@
 # Vault V2 Adapter Registries
 
+> [!WARNING]
+> The registries have moved to [vault-v2](https://github.com/morpho-org/vault-v2), under [`src/periphery/registries`](https://github.com/morpho-org/vault-v2/tree/main/src/periphery/registries).
+
 Collection of adapter registries for [vault-v2](https://github.com/morpho-org/vault-v2).
 
 ## Developers
